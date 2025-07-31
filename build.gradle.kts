@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     // Apply the java-library plugin for API and implementation separation.
@@ -21,6 +22,20 @@ testing {
         val test by getting(JvmTestSuite::class) {
             // Use JUnit Jupiter test framework
             useJUnitJupiter("5.10.1")
+        }
+    }
+}
+
+tasks.test {
+    testLogging {
+        showCauses = true
+        showStackTraces = true
+        showExceptions = true
+        info {
+            events(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
+        }
+        debug {
+            events(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_OUT, TestLogEvent.STANDARD_ERROR)
         }
     }
 }
