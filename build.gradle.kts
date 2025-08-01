@@ -52,7 +52,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "net.biesemeyer"
             artifactId = "cleaner"
-            version = "1.0.0"
+            version = "0.0.1"
 
             from(components["java"])
 
